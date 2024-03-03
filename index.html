@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Senior Dev Masterclass</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/black.css" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h4>Senior <span style="color: crimson">Developer</span> Masterclass</h4>
+          <aside class="notes">
+            <ul>
+              <li>Is AI really the future?</li>
+              <li>AI can provide answers but can it help ask the right questions?</li>
+              <li>AI can help us find solutions but can it help us find problems?</li>
+            </ul>
+          </aside>
+        </section>
+        <section data-external="chapters/make-impact.html"></section>
+        <section data-external="chapters/reduce-complexity.html"></section>
+        <section data-external="chapters/leverage-yourself.html"></section>
+        <section data-external="chapters/leverage-your-team.html"></section>
+        <section data-external="chapters/mentor-your-team.html"></section>
+        <section data-external="chapters/be-a-leader.html"></section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/zoom/zoom.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script src="plugin/math/math.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+        navigationMode: 'linear',
+        pdfSeparateFragments: false,
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX, RevealZoom],
+        dependencies: [
+          {
+            src: 'plugin/external/external.js',
+            condition: function () {
+              return !!document.querySelector('[data-external]');
+            },
+          },
+        ],
+      });
+
+      function resetSlideScrolling(slide) {
+        slide.classList.remove('scrollable-slide');
+      }
+
+      function handleSlideScrolling(slide) {
+        if (slide.scrollHeight >= 800) {
+          slide.classList.add('scrollable-slide');
+        }
+      }
+
+      Reveal.addEventListener('ready', function (event) {
+        handleSlideScrolling(event.currentSlide);
+      });
+
+      Reveal.addEventListener('slidechanged', function (event) {
+        if (event.previousSlide) {
+          resetSlideScrolling(event.previousSlide);
+        }
+        handleSlideScrolling(event.currentSlide);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<section>
+  <h4>Reduce <span style="color: crimson">Complexity</span></h4>
+  <aside class="notes">
+    <ul>
+      <li></li>
+    </ul>
+  </aside>
+</section>
+<section>
+  <img src="media/code_complexity.jpeg" />
+  <figcaption style="font-size: large">Code Complexity vs. Experience from @flaviocopes</figcaption>
+  <aside class="notes">
+    <ul>
+      <li></li>
+    </ul>
+  </aside>
+</section>
+<section>
+  <blockquote>"Software architecture is overrated, clear and simple design is underrated"</blockquote>
+  <p style="font-size: large">Gergerly Orosz</p>
+  <aside class="notes">
+    <ul>
+      <li>
+        <a target="_blank" href="https://blog.pragmaticengineer.com/software-architecture-is-overrated/"
+          >From "The Pragmatic Engineer" blog</a
+        >
+      </li>
+      <li>Architectures are design choices that have occurred repeatedly</li>
+      <li>Don't go looking for nails that you can hit with an architecture</li>
+      <li>The first goal of designing a system is simplicity</li>
+      <li>Clean design is similar to clean code</li>
+    </ul>
+  </aside>
+</section>
+<section>
+  <h4>Complexity Defined</h4>
+  <blockquote>
+    "Complexity is anything related to the structure of a software system that makes it hard to understand and modify
+    the system."
+  </blockquote>
+  <p style="font-size: large">John Ousterhout</p>
+  <aside class="notes">
+    <ul>
+      <li>
+        Cyclomatic complexity: number of linearly independent paths with a piece of source code (Thomas McCabe, 1976)
+      </li>
+      <li>
+        Cyclomatic complexity is not perfect, but it can tell you how many unit tests you'd need to test the function
+      </li>
+    </ul>
+  </aside>
+</section>
+<section>
+  <h4>Symptoms of Complexity</h4>
+  <div class="r-stack">
+    <div class="fragment fade-in-then-out">
+      <p style="color: chocolate">Change Amplification</p>
+      <p>Simple functionality changes require code modifications in many different places</p>
+    </div>
+    <div class="fragment fade-in-then-out">
+      <p style="color: chocolate">Cognitive Load</p>
+      <p>How much do I need to understand about the system as a whole to make a change?</p>
+    </div>
+    <div class="fragment fade-in-then-out">
+      <p style="color: chocolate">Unknown Unknowns</p>
+      <p>Things you must know to complete your task but have no way of knowing</p>
+    </div>
+  </div>
+  <aside class="notes">
+    <ul>
+      <li>Change amplification example: Redux</li>
+      <li>Cognitive load example: useEffect</li>
+      <li>
+        More lines of code can be better than fewer lines of code if cognitive load is reduced (for-loop vs. reduce)
+      </li>
+      <li>
+        Unknown unknowns example: how many people are still using that deprecated endpoint I wish I had built monitoring
+        for? when i change the global background color, which nested pages have local overrides that will bite me?
+      </li>
+    </ul>
+  </aside>
+</section>
+<section>
+  <h4>Causes of Complexity</h4>
+  <div style="padding: 50px 200px">
+    <p class="fragment" style="text-align: left; color: chocolate">Dependencies</p>
+    <p class="fragment" style="text-align: right; color: chocolate">Obscurity</p>
+  </div>
+  <aside class="notes">
+    <ul>
+      <li>Essential vs. accidental complexity</li>
+      <li>A dependency exists when a given piece of code cannot be understood and modified in isolation</li>
+      <li>You cannot eliminate dependencies: the question is how you manage them (e.g. cyclic dependencies)</li>
+      <li>
+        Obscurity occurs when important information is not obvious: lack of specificity, documentation, types, ...
+      </li>
+      <li>Change your mindset from...</li>
+    </ul>
+  </aside>
+</section>
+<section>
+  <h4>Tactical vs. Strategic Programming</h4>
+  <img src="media/tactical-strategic.png" />
+  <aside class="notes">
+    <ul>
+      <li>complexity / tech debt have a compound effect!</li>
+      <li>temptation: the first few weeks go so quick!</li>
+      <li>notice that even strategic is still logarithmic</li>
+      <li>tactical: your main focus is to get something working</li>
+    </ul>
+  </aside>
+</section>
+<section>
+  <h4 style="color: chocolate">Working Code Isn't Enough</h4>
+  <div class="r-stack">
+    <p class="fragment fade-in-then-out">
+      The first step towards becoming a good software designer is to realize that working code isn't enough.
+    </p>
+    <p class="fragment fade-in-then-out">
+      It's not acceptable to introduce unnecessary complexities in order to finish your current task faster.
+    </p>
+    <p class="fragment fade-in-then-out">
+      Most of the code in any system is written by extending the existing code base, so your most important job as a
+      developer is to facilitate those future extensions.
+    </p>
+    <p class="fragment fade-in-then-out">
+      Your job as a developer is not just to create code that <span style="font-style: italic">you</span> can work with
+      easily, but to create code that <span style="font-style: italic">others</span> can also work with easily.
+    </p>
+  </div>
+  <aside class="notes">
+    <ul>
+      <li>strategic: your primary goal is to produce a great design, which also happens to work</li>
+      <li>investment mindset: learn the joy of delayed gratification</li>
+    </ul>
+  </aside>
+</section>
+<section>
+  <p>Beware the <span style="color: crimson">Tactical Tornado</span></p>
+  <aside class="notes">
+    <ul>
+      <li></li>
+    </ul>
+  </aside>
+</section>
+<!-- <section>
+  <h4>APIs and Microservices</h4>
+  <div class="fragment">
+    <blockquote>
+      "There will be no other form of inter-process communication allowed: no direct linking, no direct reads of another
+      team's data store, no shared-memory model, no back-doors whatsoever. The only communication allowed is via service
+      interface calls over the network."
+    </blockquote>
+    <p style="font-size: large">Jeff Bezos, <cite>The API Mandate, 2002</cite></p>
+  </div>
+  <aside class="notes">
+    <ul>
+      <li>
+        Don't break up code or introduce abstractions too early! Finding the right cutting points requires (business)
+        experience.
+      </li>
+      <li>Microservices are hard to do right. Often you end up with the distributed monolith.</li>
+    </ul>
+  </aside>
+</section> -->
+<section>
+  <h4>How to Measure Code Quality</h4>
+  <ol>
+    <li class="fragment">What is your code churn?</li>
+    <li class="fragment">Can your code be easily read, even by beginner developers?</li>
+    <li class="fragment">Is your code extensible, can it be edited by developers who aren't the original author?</li>
+    <li class="fragment">Is your code easy to maintain?</li>
+    <li class="fragment">How's the code for portability?</li>
+    <li class="fragment">Is your code well tested for quality and bugs (does it work)?</li>
+  </ol>
+  <aside class="notes">
+    <ul>
+      <li></li>
+    </ul>
+  </aside>
+</section>
+<section>
+  <img src="media/dry.png" />
+  <aside class="notes">
+    <ul>
+      <li>
+        Misuse of DRY and "clean code" principles to conceal complexity with abstractions and in reality make the code
+        even more complex.
+      </li>
+    </ul>
+  </aside>
+</section>
+<!-- <section style="background: white">
+  <img src="media/halstead.gif" />
+  <aside class="notes">
+    <ul>
+      <li></li>
+    </ul>
+  </aside>
+</section> -->
+<section>
+  <h4 style="color: chocolate">Summary</h4>
+  <div style="font-size: 32px; text-align: left">
+    <p>💡 Stay humble (Don't be a T.T.)</p>
+    <p class="fragment">💡 Be patient</p>
+    <p class="fragment">💡 Simplicity has higher priority than working code</p>
+  </div>
+  <aside class="notes">
+    <ul>
+      <li>Be patient: it often takes time to find the right solutions and abstractions</li>
+      <li>STAY HUMBLE!! This one is hard for me...</li>
+    </ul>
+  </aside>
+</section>
+<section>
+  <img src="media/philosophy.png" />
+  <aside class="notes">
+    <ul>
+      <li></li>
+    </ul>
+  </aside>
+</section>
